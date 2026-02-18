@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KUBER RÜYA — Rüya & Fal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --void: #04030a;
+    --deep: #0d0920;
+    --mid: #1a1035;
+    --gold: #c9a84c;
+    --gold-light: #e8cc80;
+    --rose: #a05060;
+    --rose-light: #d4788a;
+    --silver: #b8b0cc;
+    --text: #e8e0f0;
+    --muted: #7a6e90;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--void);
+    color: var(--text);
+    font-family: 'Cormorant Garamond', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .stars {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle var(--d) ease-in-out infinite;
+    animation-delay: var(--delay);
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.1; transform: scale(1); }
+    50% { opacity: 0.9; transform: scale(1.4); }
+  }
+
+  .nebula {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 20% 30%, rgba(80,40,120,0.25) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 60% at 80% 70%, rgba(160,80,96,0.15) 0%, transparent 70%),
+      radial-gradient(ellipse 80% 50% at 50% 100%, rgba(13,9,32,0.8) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  header {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 50px 20px 30px;
+  }
+
+  .logo-symbol {
+    font-size: 2.5rem;
+    animation: float 4s ease-in-out infinite;
+    display: block;
+    margin-bottom: 8px;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .logo-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 6vw, 3.2rem);
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 40%, var(--rose-light) 70%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 6px;
+  }
+
+  .logo-subtitle {
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--muted);
+    letter-spacing: 0.3em;
+  }
+
+  .header-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .header-divider::before,
+  .header-divider::after {
+    content: '';
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .header-divider span { color: var(--gold); font-size: 1rem; }
+
+  .tabs {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    margin: 0 16px 28px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 2px;
+    padding: 4px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .tab-btn {
+    flex: 1;
+    padding: 11px 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    transition: all 0.3s;
+  }
+  .tab-btn.active {
+    color: var(--gold);
+    background: rgba(201,168,76,0.1);
+  }
+
+  .main {
+    position: relative;
+    z-index: 10;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 16px 80px;
+  }
+
+  .panel { display: none; animation: fadeIn 0.5s ease; }
+  .panel.active { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .input-card {
+    background: linear-gradient(145deg, rgba(26,16,53,0.8), rgba(13,9,32,0.9));
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 2px;
+    padding: 24px 20px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .input-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .input-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(184,176,204,0.15);
+    border-radius: 1px;
+    color: var(--text);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    padding: 14px;
+    resize: none;
+    outline: none;
+    transition: border-color 0.3s;
+    min-height: 120px;
+    -webkit-appearance: none;
+  }
+  textarea:focus { border-color: rgba(201,168,76,0.4); }
+  textarea::placeholder { color: var(--muted); font-style: italic; }
+
+  .fortune-types {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin: 16px 0;
+  }
+
+  .fortune-type-btn {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(184,176,204,0.15);
+    border-radius: 2px;
+    padding: 12px 6px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s;
+    color: var(--muted);
+    font-family: 'Cormorant Garamond', serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .fortune-type-btn.selected {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.08);
+    color: var(--gold-light);
+  }
+  .fortune-type-btn .icon { font-size: 1.5rem; display: block; margin-bottom: 3px; }
+  .fortune-type-btn .label { font-size: 0.78rem; display: block; }
+
+  .cta-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(160,80,96,0.15));
+    border: 1px solid var(--gold);
+    border-radius: 2px;
+    color: var(--gold-light);
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 16px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .cta-btn:active { transform: scale(0.98); }
+  .cta-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .loading {
+    display: none;
+    text-align: center;
+    padding: 50px 20px;
+  }
+  .loading.show { display: block; }
+
+  .crystal-ball {
+    font-size: 3.5rem;
+    display: block;
+    animation: pulse 2s ease-in-out infinite;
+    margin-bottom: 16px;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(201,168,76,0.3)); }
+    50% { transform: scale(1.1); filter: drop-shadow(0 0 25px rgba(201,168,76,0.7)); }
+  }
+
+  .loading-text {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1rem;
+    animation: fadeInOut 2s ease-in-out infinite;
+  }
+  @keyframes fadeInOut {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  .result-card {
+    display: none;
+    background: linear-gradient(145deg, rgba(26,16,53,0.9), rgba(13,9,32,0.95));
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 2px;
+    overflow: hidden;
+    animation: revealCard 0.8s ease;
+  }
+  .result-card.show { display: block; }
+  @keyframes revealCard {
+    from { opacity: 0; transform: translateY(20px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .result-header {
+    background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(160,80,96,0.08));
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .result-icon { font-size: 1.8rem; }
+  .result-category {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  .result-title {
+    font-size: 1.05rem;
+    color: var(--text);
+    font-style: italic;
+    margin-top: 2px;
+  }
+
+  .result-body { padding: 24px 20px; }
+  .result-text {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: var(--text);
+    white-space: pre-wrap;
+  }
+
+  .result-footer {
+    border-top: 1px solid rgba(201,168,76,0.1);
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .result-tip {
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .new-btn {
+    padding: 9px 20px;
+    background: none;
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 2px;
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    cursor: pointer;
+    transition: all 0.3s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .oracle-card {
+    background: linear-gradient(145deg, rgba(26,16,53,0.6), rgba(13,9,32,0.8));
+    border: 1px solid rgba(160,80,96,0.25);
+    border-radius: 2px;
+    padding: 28px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .oracle-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--rose-light), transparent);
+  }
+
+  .oracle-sign { font-size: 2.5rem; margin-bottom: 10px; display: block; }
+  .oracle-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--rose-light);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .oracle-text {
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--silver);
+  }
+
+  .error-msg {
+    display: none;
+    background: rgba(160,80,96,0.1);
+    border: 1px solid rgba(160,80,96,0.3);
+    padding: 14px 20px;
+    border-radius: 2px;
+    color: var(--rose-light);
+    font-style: italic;
+    text-align: center;
+    margin-top: 14px;
+    font-size: 0.95rem;
+  }
+  .error-msg.show { display: block; }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--void); }
+  ::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.2); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<div class="nebula"></div>
+<div class="stars" id="stars"></div>
+
+<header>
+  <span class="logo-symbol">🌙</span>
+  <h1 class="logo-title">KUBER RÜYA</h1>
+  <p class="logo-subtitle">Rüya Tabiri & Fal Rehberi</p>
+  <div class="header-divider"><span>✦</span></div>
+</header>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab('ruya', this)">✦ RÜYA</button>
+  <button class="tab-btn" onclick="switchTab('fal', this)">☽ FAL</button>
+  <button class="tab-btn" onclick="switchTab('oracle', this)">★ GÜNÜN MESAJI</button>
+</div>
+
+<main class="main">
+
+  <!-- RÜYA TABİRİ -->
+  <div class="panel active" id="panel-ruya">
+    <div class="input-card">
+      <label class="input-label">✦ Rüyanı Anlat</label>
+      <textarea id="ruya-input" rows="5" placeholder="Bu gece gördüğün rüyayı ayrıntılarıyla anlat... Ne hissettin, kimler vardı, ne gördün?"></textarea>
+      <button class="cta-btn" onclick="tabir('ruya')" id="ruya-btn">✦ RÜYAMI TABİR ET ✦</button>
+    </div>
+    <div class="loading" id="ruya-loading">
+      <span class="crystal-ball">🔮</span>
+      <p class="loading-text">Rüyanın sırlarına dalıyorum...</p>
+    </div>
+    <div class="error-msg" id="ruya-error"></div>
+    <div class="result-card" id="ruya-result">
+      <div class="result-header">
+        <div class="result-icon">🌙</div>
+        <div>
+          <div class="result-category">Rüya Tabiri</div>
+          <div class="result-title">Gece Mesajı</div>
+        </div>
+      </div>
+      <div class="result-body">
+        <div class="result-text" id="ruya-result-text"></div>
+      </div>
+      <div class="result-footer">
+        <span class="result-tip">✦ Rüyalar ruhun dili ile konuşur</span>
+        <button class="new-btn" onclick="resetPanel('ruya')">YENİ RÜYA</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAL -->
+  <div class="panel" id="panel-fal">
+    <div class="input-card">
+      <label class="input-label">☽ Fal Türünü Seç</label>
+      <div class="fortune-types">
+        <button class="fortune-type-btn selected" data-type="kahve" onclick="selectFalType(this)">
+          <span class="icon">☕</span><span class="label">Kahve Falı</span>
+        </button>
+        <button class="fortune-type-btn" data-type="tarot" onclick="selectFalType(this)">
+          <span class="icon">🃏</span><span class="label">Tarot</span>
+        </button>
+        <button class="fortune-type-btn" data-type="el" onclick="selectFalType(this)">
+          <span class="icon">🤲</span><span class="label">El Falı</span>
+        </button>
+        <button class="fortune-type-btn" data-type="yıldız" onclick="selectFalType(this)">
+          <span class="icon">⭐</span><span class="label">Yıldız Falı</span>
+        </button>
+        <button class="fortune-type-btn" data-type="rune" onclick="selectFalType(this)">
+          <span class="icon">ᚱ</span><span class="label">Rün Falı</span>
+        </button>
+        <button class="fortune-type-btn" data-type="genel" onclick="selectFalType(this)">
+          <span class="icon">🌟</span><span class="label">Genel Fal</span>
+        </button>
+      </div>
+      <label class="input-label" style="margin-top:16px;">☽ Aklındaki Konu</label>
+      <textarea id="fal-input" rows="3" placeholder="Aşk mı, kariyer mi, para mı? Aklındaki soruyu yaz... Ya da boş bırakırsan kader yönlendirir."></textarea>
+      <button class="cta-btn" onclick="tabir('fal')" id="fal-btn">☽ FALIMA BAK ☽</button>
+    </div>
+    <div class="loading" id="fal-loading">
+      <span class="crystal-ball">☽</span>
+      <p class="loading-text">Yıldızlara soruyorum...</p>
+    </div>
+    <div class="error-msg" id="fal-error"></div>
+    <div class="result-card" id="fal-result">
+      <div class="result-header">
+        <div class="result-icon" id="fal-result-icon">☕</div>
+        <div>
+          <div class="result-category" id="fal-result-category">Kahve Falı</div>
+          <div class="result-title">Kaderin Sesi</div>
+        </div>
+      </div>
+      <div class="result-body">
+        <div class="result-text" id="fal-result-text"></div>
+      </div>
+      <div class="result-footer">
+        <span class="result-tip">☽ Evrenin sırları sende saklı</span>
+        <button class="new-btn" onclick="resetPanel('fal')">YENİ FAL</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GÜNÜN MESAJI -->
+  <div class="panel" id="panel-oracle">
+    <div class="oracle-card">
+      <span class="oracle-sign">✨</span>
+      <div class="oracle-title">Günün Kozmik Mesajı</div>
+      <div class="oracle-text">Evren sana bugün ne söylemek istiyor?</div>
+    </div>
+    <div class="input-card">
+      <label class="input-label">★ Bugün Nasıl Hissediyorsun?</label>
+      <textarea id="oracle-input" rows="3" placeholder="Bugünkü ruh halini, kaygılarını veya hayallerini kısaca paylaş..."></textarea>
+      <button class="cta-btn" onclick="tabir('oracle')" id="oracle-btn">★ GÜNÜMÜN ENERJİSİNİ AL ★</button>
+    </div>
+    <div class="loading" id="oracle-loading">
+      <span class="crystal-ball">✨</span>
+      <p class="loading-text">Evrenle bağlantı kuruyorum...</p>
+    </div>
+    <div class="error-msg" id="oracle-error"></div>
+    <div class="result-card" id="oracle-result">
+      <div class="result-header">
+        <div class="result-icon">✨</div>
+        <div>
+          <div class="result-category">Günün Mesajı</div>
+          <div class="result-title">Evrenin Sesi</div>
+        </div>
+      </div>
+      <div class="result-body">
+        <div class="result-text" id="oracle-result-text"></div>
+      </div>
+      <div class="result-footer">
+        <span class="result-tip">★ Her yeni gün yeni bir başlangıç</span>
+        <button class="new-btn" onclick="resetPanel('oracle')">YENİDEN AL</button>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+// Yıldız efekti
+const starsContainer = document.getElementById('stars');
+for (let i = 0; i < 100; i++) {
+  const star = document.createElement('div');
+  star.className = 'star';
+  const size = Math.random() * 2.5 + 0.5;
+  star.style.cssText = `width:${size}px;height:${size}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${Math.random()*3+2}s;--delay:${Math.random()*4}s;`;
+  starsContainer.appendChild(star);
+}
+
+let selectedFalType = 'kahve';
+const falTypeIcons = { kahve:'☕', tarot:'🃏', el:'🤲', yıldız:'⭐', rune:'ᚱ', genel:'🌟' };
+const falTypeNames = { kahve:'Kahve Falı', tarot:'Tarot Falı', el:'El Falı', yıldız:'Yıldız Falı', rune:'Rün Falı', genel:'Genel Fal' };
+
+function switchTab(tab, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-' + tab).classList.add('active');
+}
+
+function selectFalType(btn) {
+  document.querySelectorAll('.fortune-type-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedFalType = btn.dataset.type;
+  document.getElementById('fal-result-icon').textContent = falTypeIcons[selectedFalType];
+  document.getElementById('fal-result-category').textContent = falTypeNames[selectedFalType];
+}
+
+function resetPanel(type) {
+  document.getElementById(type + '-result').classList.remove('show');
+  document.getElementById(type + '-input').value = '';
+  document.getElementById(type + '-error').classList.remove('show');
+}
+
+async function tabir(type) {
+  const input = document.getElementById(type + '-input').value.trim();
+  const btn = document.getElementById(type + '-btn');
+  const loading = document.getElementById(type + '-loading');
+  const result = document.getElementById(type + '-result');
+  const error = document.getElementById(type + '-error');
+
+  result.classList.remove('show');
+  error.classList.remove('show');
+
+  let prompt = '';
+  if (type === 'ruya') {
+    if (!input) { showError(type, 'Lütfen rüyanı anlat, ardından tabir edeyim...'); return; }
+    prompt = `Sen KUBER RÜYA'nın mistik rüya tabirleri uzmanısın. Türk kültürü ve evrensel sembolizmi harmanlayarak derin, gizemli ve ilham verici rüya tabirleri yaparsın.\n\nKullanıcının rüyası: "${input}"\n\nRüyayı şu şekilde tabir et:\n- Önce rüyadaki ana sembollerin anlamını açıkla\n- Bilinçaltının mesajını yorumla\n- Yakın gelecek için ipuçları ver\n- Ruhsal ve duygusal anlam katmanlarını ekle\n- Sonunda kısa bir tavsiye ile bitir\n\nYanıtın mistik, sıcak ve Türkçe olsun. 250-350 kelime.`;
+  } else if (type === 'fal') {
+    const topic = input || 'genel hayat, aşk ve kariyer';
+    prompt = `Sen KUBER RÜYA'nın mistik fal ustasısın. ${falTypeNames[selectedFalType]} konusunda derin bilgiye sahipsin.\n\nKullanıcının konusu: "${topic}"\nFal türü: ${falTypeNames[selectedFalType]}\n\nBu fal türüne özgü dil ve sembolizm kullanarak fal bak:\n- Geçmişten gelen etkiler\n- Şimdiki zaman enerjisi\n- Yakın gelecek\n- Aşk/ilişkiler hakkında mesaj\n- Kariyer/para ipucu\n- Genel enerji yorumu\n\nGizemli, umut verici, Türkçe. 280-380 kelime.`;
+  } else {
+    const mood = input || 'merak dolu ve hayata açık';
+    prompt = `Sen KUBER RÜYA'nın kozmik enerji rehberisin.\n\nKullanıcının bugünkü hali: "${mood}"\n\nBugün için:\n- Günün enerjisini ve temasını belirle\n- Hangi burç veya gezegen enerjisi hâkim\n- Bugün yapması gereken bir eylem\n- Kaçınması gereken bir şey\n- Güçlü motivasyon mesajı\n- Şanslı renk, sayı veya sembol\n\nMistik, ilham verici, Türkçe. 200-280 kelime.`;
+  }
+
+  btn.disabled = true;
+  loading.classList.add('show');
+
+  try {
+    const response = await fetch('/api/ask', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt })
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || 'Bir hata oluştu');
+
+    loading.classList.remove('show');
+    document.getElementById(type + '-result-text').textContent = data.result;
+    result.classList.add('show');
+    result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } catch (err) {
+    loading.classList.remove('show');
+    showError(type, 'Mistik bağlantı kesildi. Lütfen tekrar dene... (' + err.message + ')');
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function showError(type, msg) {
+  const el = document.getElementById(type + '-error');
+  el.textContent = msg;
+  el.classList.add('show');
+}
+</script>
+</body>
+</html>

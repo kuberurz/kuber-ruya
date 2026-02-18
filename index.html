@@ -49,12 +49,13 @@
   #welcome-screen.hidden { display: none; }
 
   .welcome-card {
-    position: relative; z-index: 10;
+    position: relative; z-index: 1010;
     width: 100%; max-width: 440px;
-    background: linear-gradient(145deg, rgba(26,16,53,0.95), rgba(13,9,32,0.98));
+    background: linear-gradient(145deg, rgba(26,16,53,0.98), rgba(13,9,32,0.99));
     border: 1px solid rgba(201,168,76,0.3);
     border-radius: 4px; padding: 36px 28px;
     animation: fadeIn 0.6s ease;
+    pointer-events: all;
   }
   .welcome-card::before {
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
@@ -104,29 +105,36 @@
   .date-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
   .date-row select {
     width: 100%;
-    background: rgba(255,255,255,0.04);
+    background: rgba(255,255,255,0.06);
     border: 1px solid rgba(184,176,204,0.2);
     border-radius: 2px; color: var(--text-bright);
     font-family: 'Cormorant Garamond', serif;
     font-size: 1rem; padding: 12px 10px;
     outline: none; cursor: pointer;
-    -webkit-appearance: none; appearance: none;
     transition: border-color 0.3s;
   }
   .date-row select:focus { border-color: rgba(201,168,76,0.5); }
-  .date-row select option { background: #0d0920; color: var(--text-bright); }
+  .date-row select option { background: #1a1035; color: #ffffff; }
 
   .toggle-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .toggle-btn {
-    padding: 12px 8px; text-align: center;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(184,176,204,0.15);
+    padding: 14px 8px; text-align: center;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(184,176,204,0.2);
     border-radius: 2px; cursor: pointer;
-    color: var(--muted); font-family: 'Cormorant Garamond', serif;
-    font-size: 0.95rem; transition: all 0.3s;
+    color: rgba(255,255,255,0.7);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem; transition: all 0.3s;
+    position: relative; z-index: 20;
     -webkit-tap-highlight-color: transparent;
+    user-select: none;
   }
-  .toggle-btn.selected { border-color: var(--gold); background: rgba(201,168,76,0.08); color: var(--gold-light); }
+  .toggle-btn:active { transform: scale(0.97); }
+  .toggle-btn.selected {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.12);
+    color: var(--gold-light);
+  }
 
   .welcome-btn {
     width: 100%; padding: 16px; margin-top: 8px;
@@ -461,7 +469,16 @@
     <div class="form-group">
       <label class="form-label">✦ Doğum Tarihi</label>
       <div class="date-row">
-        <select id="w-day"><option value="">Gün</option></select>
+        <select id="w-day">
+          <option value="">Gün</option>
+          <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+          <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+          <option>11</option><option>12</option><option>13</option><option>14</option><option>15</option>
+          <option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+          <option>21</option><option>22</option><option>23</option><option>24</option><option>25</option>
+          <option>26</option><option>27</option><option>28</option><option>29</option><option>30</option>
+          <option>31</option>
+        </select>
         <select id="w-month">
           <option value="">Ay</option>
           <option value="1">Ocak</option><option value="2">Şubat</option><option value="3">Mart</option>
@@ -469,23 +486,36 @@
           <option value="7">Temmuz</option><option value="8">Ağustos</option><option value="9">Eylül</option>
           <option value="10">Ekim</option><option value="11">Kasım</option><option value="12">Aralık</option>
         </select>
-        <select id="w-year"><option value="">Yıl</option></select>
+        <select id="w-year">
+          <option value="">Yıl</option>
+          <option>2010</option><option>2009</option><option>2008</option><option>2007</option><option>2006</option>
+          <option>2005</option><option>2004</option><option>2003</option><option>2002</option><option>2001</option>
+          <option>2000</option><option>1999</option><option>1998</option><option>1997</option><option>1996</option>
+          <option>1995</option><option>1994</option><option>1993</option><option>1992</option><option>1991</option>
+          <option>1990</option><option>1989</option><option>1988</option><option>1987</option><option>1986</option>
+          <option>1985</option><option>1984</option><option>1983</option><option>1982</option><option>1981</option>
+          <option>1980</option><option>1979</option><option>1978</option><option>1977</option><option>1976</option>
+          <option>1975</option><option>1974</option><option>1973</option><option>1972</option><option>1971</option>
+          <option>1970</option><option>1969</option><option>1968</option><option>1967</option><option>1966</option>
+          <option>1965</option><option>1964</option><option>1963</option><option>1962</option><option>1961</option>
+          <option>1960</option><option>1955</option><option>1950</option><option>1945</option><option>1940</option>
+        </select>
       </div>
     </div>
 
     <div class="form-group">
       <label class="form-label">✦ Medeni Durum</label>
       <div class="toggle-row">
-        <button class="toggle-btn" id="btn-bekar" onclick="selectToggle('medeni','bekar')">💍 Bekar</button>
-        <button class="toggle-btn" id="btn-evli" onclick="selectToggle('medeni','evli')">👫 Evli</button>
+        <button type="button" class="toggle-btn" id="btn-bekar" onclick="selectToggle('medeni','bekar')">💍 Bekar</button>
+        <button type="button" class="toggle-btn" id="btn-evli" onclick="selectToggle('medeni','evli')">👫 Evli</button>
       </div>
     </div>
 
     <div class="form-group">
       <label class="form-label">✦ Çalışma Durumu</label>
       <div class="toggle-row">
-        <button class="toggle-btn" id="btn-calisiyor" onclick="selectToggle('calisma','calisiyor')">💼 Çalışıyorum</button>
-        <button class="toggle-btn" id="btn-calismıyor" onclick="selectToggle('calisma','calismıyor')">🌿 Çalışmıyorum</button>
+        <button type="button" class="toggle-btn" id="btn-calisiyor" onclick="selectToggle('calisma','calisiyor')">💼 Çalışıyorum</button>
+        <button type="button" class="toggle-btn" id="btn-calismıyor" onclick="selectToggle('calisma','calismıyor')">🌿 Çalışmıyorum</button>
       </div>
     </div>
 
@@ -662,13 +692,6 @@ for (let i = 0; i < 100; i++) {
 let userInfo = { ad: '', dogumTarihi: '', medeni: '', calisma: '' };
 let selectedMedeni = '';
 let selectedCalisma = '';
-
-// Gün ve yıl doldur
-const daySelect = document.getElementById('w-day');
-const yearSelect = document.getElementById('w-year');
-for (let d = 1; d <= 31; d++) { const o = document.createElement('option'); o.value = d; o.textContent = d; daySelect.appendChild(o); }
-const currentYear = new Date().getFullYear();
-for (let y = currentYear; y >= 1920; y--) { const o = document.createElement('option'); o.value = y; o.textContent = y; yearSelect.appendChild(o); }
 
 function selectToggle(group, val) {
   if (group === 'medeni') {
@@ -863,7 +886,7 @@ NOT: Eğer fotoğrafta en ufak bir fincan veya kahve izi bile varsa, kabul et ve
 EVET, el var → Hemen fal yorumunu yap. Eldeki çizgileri, şekilleri yorumuna dahil et. Asla reddetme.
 HAYIR, hiç el yok → Sadece şunu yaz: "🤲 Bu fotoğrafta el göremedim. Lütfen el ayasının veya elinizin fotoğrafını yükleyin." ve dur.
 
-NOT: Eğer fotoğrafta en ufak bir el veya parmak bile varsa, kabul et ve yorumla.`;`;
+NOT: Eğer fotoğrafta en ufak bir el veya parmak bile varsa, kabul et ve yorumla.`;
 
     const photoInstruction = hasPhoto
       ? (selectedFalType === 'kahve' ? kahveKontrol : elKontrol)

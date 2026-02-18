@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KUBER RÜYA — Rüya & Fal</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --void: #04030a;
@@ -15,7 +15,8 @@
     --rose: #a05060;
     --rose-light: #d4788a;
     --silver: #b8b0cc;
-    --text: #e8e0f0;
+    --text: #f0ecff;
+    --text-bright: #ffffff;
     --muted: #7a6e90;
   }
 
@@ -30,16 +31,12 @@
   }
 
   .stars {
-    position: fixed;
-    top: 0; left: 0;
+    position: fixed; top: 0; left: 0;
     width: 100%; height: 100%;
-    pointer-events: none;
-    z-index: 0;
+    pointer-events: none; z-index: 0;
   }
   .star {
-    position: absolute;
-    background: white;
-    border-radius: 50%;
+    position: absolute; background: white; border-radius: 50%;
     animation: twinkle var(--d) ease-in-out infinite;
     animation-delay: var(--delay);
   }
@@ -49,10 +46,8 @@
   }
 
   .nebula {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 0;
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%; z-index: 0;
     background:
       radial-gradient(ellipse 60% 40% at 20% 30%, rgba(80,40,120,0.25) 0%, transparent 70%),
       radial-gradient(ellipse 50% 60% at 80% 70%, rgba(160,80,96,0.15) 0%, transparent 70%),
@@ -60,99 +55,63 @@
     pointer-events: none;
   }
 
+  /* ── HEADER ── */
   header {
-    position: relative;
-    z-index: 10;
-    text-align: center;
-    padding: 50px 20px 30px;
+    position: relative; z-index: 10;
+    text-align: center; padding: 50px 20px 30px;
   }
-
   .logo-symbol {
-    font-size: 2.5rem;
+    font-size: 2.5rem; display: block; margin-bottom: 8px;
     animation: float 4s ease-in-out infinite;
-    display: block;
-    margin-bottom: 8px;
   }
   @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
   }
-
   .logo-title {
     font-family: 'Cinzel', serif;
     font-size: clamp(2rem, 6vw, 3.2rem);
-    font-weight: 600;
-    letter-spacing: 0.25em;
+    font-weight: 600; letter-spacing: 0.25em;
     background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 40%, var(--rose-light) 70%, var(--gold) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     margin-bottom: 6px;
   }
-
   .logo-subtitle {
-    font-style: italic;
-    font-size: 0.95rem;
-    color: var(--muted);
-    letter-spacing: 0.3em;
+    font-size: 0.95rem; color: var(--muted); letter-spacing: 0.3em;
   }
-
   .header-divider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    margin-top: 20px;
+    display: flex; align-items: center; justify-content: center;
+    gap: 16px; margin-top: 20px;
   }
-  .header-divider::before,
-  .header-divider::after {
-    content: '';
-    width: 60px;
-    height: 1px;
+  .header-divider::before, .header-divider::after {
+    content: ''; width: 60px; height: 1px;
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
   }
   .header-divider span { color: var(--gold); font-size: 1rem; }
 
+  /* ── TABS ── */
   .tabs {
-    position: relative;
-    z-index: 10;
-    display: flex;
-    justify-content: center;
+    position: relative; z-index: 10;
+    display: flex; justify-content: center;
     margin: 0 16px 28px;
     background: rgba(255,255,255,0.03);
     border: 1px solid rgba(201,168,76,0.2);
-    border-radius: 2px;
-    padding: 4px;
-    max-width: 480px;
-    margin-left: auto;
-    margin-right: auto;
+    border-radius: 2px; padding: 4px;
+    max-width: 480px; margin-left: auto; margin-right: auto;
   }
-
   .tab-btn {
-    flex: 1;
-    padding: 11px 8px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-family: 'Cinzel', serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-    transition: all 0.3s;
+    flex: 1; padding: 11px 8px;
+    background: none; border: none; cursor: pointer;
+    font-family: 'Cinzel', serif; font-size: 0.65rem;
+    letter-spacing: 0.1em; color: var(--muted); transition: all 0.3s;
   }
-  .tab-btn.active {
-    color: var(--gold);
-    background: rgba(201,168,76,0.1);
-  }
+  .tab-btn.active { color: var(--gold); background: rgba(201,168,76,0.1); }
 
+  /* ── MAIN ── */
   .main {
-    position: relative;
-    z-index: 10;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 0 16px 80px;
+    position: relative; z-index: 10;
+    max-width: 600px; margin: 0 auto; padding: 0 16px 80px;
   }
-
   .panel { display: none; animation: fadeIn 0.5s ease; }
   .panel.active { display: block; }
   @keyframes fadeIn {
@@ -160,132 +119,124 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
+  /* ── INPUT CARD ── */
   .input-card {
     background: linear-gradient(145deg, rgba(26,16,53,0.8), rgba(13,9,32,0.9));
     border: 1px solid rgba(201,168,76,0.2);
-    border-radius: 2px;
-    padding: 24px 20px;
-    margin-bottom: 20px;
-    position: relative;
-    overflow: hidden;
+    border-radius: 2px; padding: 24px 20px; margin-bottom: 20px;
+    position: relative; overflow: hidden;
   }
   .input-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
   }
-
   .input-label {
-    font-family: 'Cinzel', serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    display: block;
+    font-family: 'Cinzel', serif; font-size: 0.65rem;
+    letter-spacing: 0.2em; color: var(--gold);
+    text-transform: uppercase; margin-bottom: 10px; display: block;
   }
-
   textarea {
-    width: 100%;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(184,176,204,0.15);
-    border-radius: 1px;
-    color: var(--text);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.05rem;
-    line-height: 1.7;
-    padding: 14px;
-    resize: none;
-    outline: none;
-    transition: border-color 0.3s;
-    min-height: 120px;
-    -webkit-appearance: none;
+    width: 100%; background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(184,176,204,0.15); border-radius: 1px;
+    color: var(--text-bright); font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-weight: 400; line-height: 1.7;
+    padding: 14px; resize: none; outline: none; transition: border-color 0.3s;
+    min-height: 120px; -webkit-appearance: none;
   }
   textarea:focus { border-color: rgba(201,168,76,0.4); }
-  textarea::placeholder { color: var(--muted); font-style: italic; }
+  textarea::placeholder { color: var(--muted); }
 
+  /* ── FAL TİPİ SEÇİMİ ── */
   .fortune-types {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-    margin: 16px 0;
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 8px; margin: 16px 0;
   }
-
   .fortune-type-btn {
     background: rgba(255,255,255,0.03);
     border: 1px solid rgba(184,176,204,0.15);
-    border-radius: 2px;
-    padding: 12px 6px;
-    cursor: pointer;
-    text-align: center;
-    transition: all 0.3s;
-    color: var(--muted);
+    border-radius: 2px; padding: 12px 6px; cursor: pointer;
+    text-align: center; transition: all 0.3s; color: var(--muted);
     font-family: 'Cormorant Garamond', serif;
     -webkit-tap-highlight-color: transparent;
   }
   .fortune-type-btn.selected {
-    border-color: var(--gold);
-    background: rgba(201,168,76,0.08);
+    border-color: var(--gold); background: rgba(201,168,76,0.08);
     color: var(--gold-light);
   }
   .fortune-type-btn .icon { font-size: 1.5rem; display: block; margin-bottom: 3px; }
-  .fortune-type-btn .label { font-size: 0.78rem; display: block; }
+  .fortune-type-btn .label { font-size: 0.82rem; display: block; color: inherit; }
 
+  /* ── FOTOĞRAF YÜKLEME ── */
+  .photo-upload-wrap { margin: 16px 0; }
+  .photo-upload-area {
+    border: 1.5px dashed rgba(201,168,76,0.35);
+    border-radius: 4px; padding: 20px; text-align: center;
+    cursor: pointer; transition: all 0.3s; position: relative;
+    background: rgba(255,255,255,0.02);
+  }
+  .photo-upload-area:hover { border-color: var(--gold); background: rgba(201,168,76,0.05); }
+  .photo-upload-area input[type="file"] {
+    position: absolute; inset: 0; opacity: 0;
+    cursor: pointer; width: 100%; height: 100%;
+  }
+  .photo-upload-icon { font-size: 1.8rem; display: block; margin-bottom: 6px; }
+  .photo-upload-label {
+    font-family: 'Cinzel', serif; font-size: 0.65rem;
+    letter-spacing: 0.15em; color: var(--gold); display: block; margin-bottom: 3px;
+  }
+  .photo-upload-sub { font-size: 0.82rem; color: var(--muted); }
+  .photo-preview-wrap {
+    display: none; position: relative; border-radius: 4px;
+    overflow: hidden; border: 1px solid rgba(201,168,76,0.3);
+  }
+  .photo-preview-wrap.show { display: block; }
+  .photo-preview-wrap img { width: 100%; max-height: 220px; object-fit: cover; display: block; }
+  .photo-remove-btn {
+    position: absolute; top: 8px; right: 8px;
+    background: rgba(0,0,0,0.65); border: 1px solid rgba(255,255,255,0.2);
+    color: #fff; border-radius: 50%; width: 28px; height: 28px;
+    font-size: 0.8rem; cursor: pointer; display: flex;
+    align-items: center; justify-content: center; transition: all 0.2s;
+  }
+  .photo-remove-btn:hover { background: rgba(160,80,96,0.85); }
+
+  /* ── CTA BUTTON ── */
   .cta-btn {
-    width: 100%;
-    padding: 16px;
+    width: 100%; padding: 16px;
     background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(160,80,96,0.15));
-    border: 1px solid var(--gold);
-    border-radius: 2px;
-    color: var(--gold-light);
-    font-family: 'Cinzel', serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.15em;
-    cursor: pointer;
-    transition: all 0.3s;
-    margin-top: 16px;
+    border: 1px solid var(--gold); border-radius: 2px;
+    color: var(--gold-light); font-family: 'Cinzel', serif;
+    font-size: 0.78rem; letter-spacing: 0.15em;
+    cursor: pointer; transition: all 0.3s; margin-top: 16px;
     -webkit-tap-highlight-color: transparent;
   }
+  .cta-btn:hover { background: linear-gradient(135deg, rgba(201,168,76,0.25), rgba(160,80,96,0.2)); }
   .cta-btn:active { transform: scale(0.98); }
   .cta-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-  .loading {
-    display: none;
-    text-align: center;
-    padding: 50px 20px;
-  }
+  /* ── LOADING ── */
+  .loading { display: none; text-align: center; padding: 50px 20px; }
   .loading.show { display: block; }
-
   .crystal-ball {
-    font-size: 3.5rem;
-    display: block;
+    font-size: 3.5rem; display: block; margin-bottom: 16px;
     animation: pulse 2s ease-in-out infinite;
-    margin-bottom: 16px;
   }
   @keyframes pulse {
     0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(201,168,76,0.3)); }
     50% { transform: scale(1.1); filter: drop-shadow(0 0 25px rgba(201,168,76,0.7)); }
   }
-
   .loading-text {
-    font-style: italic;
-    color: var(--muted);
-    font-size: 1rem;
+    color: var(--muted); font-size: 1rem;
     animation: fadeInOut 2s ease-in-out infinite;
   }
-  @keyframes fadeInOut {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 1; }
-  }
+  @keyframes fadeInOut { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
 
+  /* ── RESULT CARD (RÜYA + FAL) ── */
   .result-card {
     display: none;
     background: linear-gradient(145deg, rgba(26,16,53,0.9), rgba(13,9,32,0.95));
     border: 1px solid rgba(201,168,76,0.3);
-    border-radius: 2px;
-    overflow: hidden;
+    border-radius: 2px; overflow: hidden;
     animation: revealCard 0.8s ease;
   }
   .result-card.show { display: block; }
@@ -293,516 +244,236 @@
     from { opacity: 0; transform: translateY(20px) scale(0.98); }
     to { opacity: 1; transform: translateY(0) scale(1); }
   }
-
   .result-header {
     background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(160,80,96,0.08));
     border-bottom: 1px solid rgba(201,168,76,0.2);
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
+    padding: 20px; display: flex; align-items: center; gap: 14px;
   }
-
   .result-icon { font-size: 1.8rem; }
   .result-category {
-    font-family: 'Cinzel', serif;
-    font-size: 0.6rem;
-    letter-spacing: 0.25em;
-    color: var(--gold);
-    text-transform: uppercase;
+    font-family: 'Cinzel', serif; font-size: 0.6rem;
+    letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase;
   }
-  .result-title {
-    font-size: 1.05rem;
-    color: var(--text);
-    font-style: italic;
-    margin-top: 2px;
-  }
+  .result-title { font-size: 1.1rem; color: var(--text-bright); margin-top: 2px; font-weight: 500; }
 
   .result-body { padding: 24px 20px; }
-  .result-text {
-    font-size: 1.05rem;
-    line-height: 1.85;
-    color: var(--text);
-  }
+  .result-text { font-size: 1.05rem; line-height: 1.85; color: var(--text-bright); }
 
-  /* KUBER cevap bölümleri */
+  /* KUBER yanıt bölümleri */
   .k-section {
-    margin-bottom: 22px;
-    padding-bottom: 18px;
-    border-bottom: 1px solid rgba(201,168,76,0.1);
+    margin-bottom: 24px; padding-bottom: 20px;
+    border-bottom: 1px solid rgba(201,168,76,0.12);
   }
-  .k-section:last-child {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: none;
-  }
+  .k-section:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
   .k-section-title {
-    font-family: 'Cinzel', serif;
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 7px;
+    font-family: 'Cinzel', serif; font-size: 0.7rem;
+    letter-spacing: 0.18em; color: var(--gold);
+    text-transform: uppercase; margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px;
   }
-  .k-section-title .k-emoji {
-    font-size: 1.15rem;
-  }
+  .k-emoji { font-size: 1.1rem; }
   .k-section p {
-    font-size: 1.05rem;
-    line-height: 1.9;
-    color: var(--text);
-    margin: 0;
-    font-style: italic;
-  }
-  .k-highlight {
-    color: var(--gold-light);
-    font-style: normal;
-    font-weight: 600;
+    font-size: 1.08rem; line-height: 1.85;
+    color: var(--text-bright); margin: 0; font-weight: 400;
   }
   .k-closing {
-    margin-top: 22px;
-    padding: 16px 18px;
-    background: linear-gradient(135deg, rgba(201,168,76,0.07), rgba(160,80,96,0.05));
+    margin-top: 20px; padding: 16px 18px;
+    background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(160,80,96,0.05));
     border-left: 2px solid var(--gold);
     border-radius: 0 2px 2px 0;
-    font-style: italic;
-    color: var(--silver);
-    font-size: 0.97rem;
-    line-height: 1.8;
+    color: var(--silver); font-size: 1rem; line-height: 1.8; font-weight: 400;
   }
-  body.day-mode .k-section { border-bottom-color: rgba(138,101,0,0.15); }
-  body.day-mode .k-closing {
-    background: linear-gradient(135deg, rgba(138,101,0,0.08), rgba(155,45,58,0.05));
-    border-left-color: var(--gold);
-    color: var(--muted);
-  }
-
-  /* FOTOĞRAF YÜKLEME */
-  .photo-upload-area {
-    margin: 16px 0;
-    border: 1.5px dashed rgba(201,168,76,0.35);
-    border-radius: 4px;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s;
-    position: relative;
-    background: rgba(255,255,255,0.02);
-  }
-  .photo-upload-area:hover, .photo-upload-area.drag-over {
-    border-color: var(--gold);
-    background: rgba(201,168,76,0.05);
-  }
-  .photo-upload-area input[type="file"] {
-    position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
-  }
-  .photo-upload-icon { font-size: 2rem; display: block; margin-bottom: 8px; }
-  .photo-upload-label {
-    font-family: 'Cinzel', serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    color: var(--gold);
-    display: block;
-    margin-bottom: 4px;
-  }
-  .photo-upload-sub {
-    font-size: 0.8rem;
-    color: var(--muted);
-    font-style: italic;
-  }
-  .photo-preview-wrap {
-    display: none;
-    position: relative;
-    margin: 12px 0;
-    border-radius: 4px;
-    overflow: hidden;
-    border: 1px solid rgba(201,168,76,0.3);
-  }
-  .photo-preview-wrap.show { display: block; }
-  .photo-preview-wrap img {
-    width: 100%;
-    max-height: 220px;
-    object-fit: cover;
-    display: block;
-  }
-  .photo-remove-btn {
-    position: absolute;
-    top: 8px; right: 8px;
-    background: rgba(0,0,0,0.6);
-    border: 1px solid rgba(255,255,255,0.2);
-    color: #fff;
-    border-radius: 50%;
-    width: 28px; height: 28px;
-    font-size: 0.8rem;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.2s;
-  }
-  .photo-remove-btn:hover { background: rgba(160,80,96,0.8); }
-  body.day-mode .photo-upload-area {
-    border-color: rgba(138,101,0,0.3);
-    background: rgba(0,0,0,0.02);
-  }
-
-  /* GÜNÜN MESAJI — EKRAN GÖRÜNTÜSÜ KARTI */
-  .oracle-share-card {
-    display: none;
-    border-radius: 12px;
-    overflow: hidden;
-    position: relative;
-    background: linear-gradient(145deg, #0d0920, #1a1035, #0a0618);
-    border: 1px solid rgba(201,168,76,0.4);
-    margin-bottom: 16px;
-  }
-  .oracle-share-card.show { display: block; animation: revealCard 0.8s ease; }
-
-  .oracle-share-bg {
-    position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,168,76,0.12) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(160,80,96,0.1) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 40% at 90% 90%, rgba(80,40,120,0.1) 0%, transparent 60%);
-    pointer-events: none;
-  }
-  .oracle-share-inner { position: relative; z-index: 1; padding: 28px 24px 22px; }
-
-  .oracle-share-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 20px;
-  }
-  .oracle-share-brand {
-    font-family: 'Cinzel', serif;
-    font-size: 0.6rem;
-    letter-spacing: 0.25em;
-    color: rgba(201,168,76,0.6);
-    text-transform: uppercase;
-  }
-  .oracle-share-date {
-    font-size: 0.75rem;
-    color: var(--muted);
-    font-style: italic;
-  }
-
-  .oracle-share-title {
-    font-family: 'Cinzel', serif;
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
-    color: var(--rose-light);
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-  .oracle-share-headline {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.4rem, 4vw, 1.8rem);
-    font-weight: 300;
-    font-style: italic;
-    color: var(--gold-light);
-    line-height: 1.3;
-    margin-bottom: 20px;
-  }
-
-  .oracle-share-divider {
-    display: flex; align-items: center; gap: 12px;
-    margin-bottom: 20px;
-  }
-  .oracle-share-divider::before, .oracle-share-divider::after {
-    content: ''; flex: 1; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.35), transparent);
-  }
-  .oracle-share-divider span { color: var(--gold); font-size: 0.7rem; }
-
-  .oracle-share-sections { display: flex; flex-direction: column; gap: 14px; }
-  .oracle-share-section {
-    display: flex; gap: 12px; align-items: flex-start;
-  }
-  .oracle-share-section-icon {
-    font-size: 1.3rem; flex-shrink: 0; margin-top: 1px;
-  }
-  .oracle-share-section-content {}
-  .oracle-share-section-label {
-    font-family: 'Cinzel', serif;
-    font-size: 0.58rem;
-    letter-spacing: 0.15em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 3px;
-  }
-  .oracle-share-section-text {
-    font-size: 0.95rem;
-    line-height: 1.75;
-    color: var(--text);
-    font-style: italic;
-  }
-
-  .oracle-share-lucky {
-    margin-top: 20px;
-    padding: 14px 16px;
-    background: rgba(201,168,76,0.07);
-    border: 1px solid rgba(201,168,76,0.2);
-    border-radius: 6px;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .oracle-lucky-item { text-align: center; }
-  .oracle-lucky-label {
-    font-family: 'Cinzel', serif;
-    font-size: 0.55rem;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 4px;
-  }
-  .oracle-lucky-value {
-    font-size: 1.1rem;
-    color: var(--gold-light);
-    font-weight: 600;
-  }
-
-  .oracle-share-footer {
-    margin-top: 20px;
-    padding-top: 16px;
-    border-top: 1px solid rgba(201,168,76,0.15);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .oracle-share-closing {
-    font-style: italic;
-    font-size: 0.88rem;
-    color: var(--silver);
-    flex: 1;
-    padding-right: 12px;
-    line-height: 1.6;
-  }
-  .oracle-share-logo {
-    font-family: 'Cinzel', serif;
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    color: rgba(201,168,76,0.5);
-    text-align: right;
-    white-space: nowrap;
-  }
-
-  .oracle-share-actions {
-    display: flex; gap: 8px; margin-top: 12px;
-  }
-  .oracle-action-btn {
-    flex: 1;
-    padding: 10px;
-    background: none;
-    border: 1px solid rgba(201,168,76,0.25);
-    border-radius: 2px;
-    color: var(--gold);
-    font-family: 'Cinzel', serif;
-    font-size: 0.62rem;
-    letter-spacing: 0.1em;
-    cursor: pointer;
-    transition: all 0.3s;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .oracle-action-btn:hover { background: rgba(201,168,76,0.08); }
-  body.day-mode .oracle-share-card {
-    background: linear-gradient(145deg, #ede5d0, #e0d4b8, #e8dcc0);
-    border-color: rgba(138,101,0,0.4);
-  }
-  body.day-mode .oracle-share-bg {
-    background:
-      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(138,101,0,0.1) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(155,45,58,0.07) 0%, transparent 60%);
-  }
-  body.day-mode .oracle-share-section-text { color: var(--text); }
-  body.day-mode .oracle-share-lucky { background: rgba(138,101,0,0.06); border-color: rgba(138,101,0,0.2); }
-  body.day-mode .oracle-action-btn { border-color: rgba(138,101,0,0.3); color: var(--gold); }
 
   .result-footer {
     border-top: 1px solid rgba(201,168,76,0.1);
-    padding: 16px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
+    padding: 16px 20px; display: flex;
+    justify-content: space-between; align-items: center;
+    gap: 10px; flex-wrap: wrap;
   }
-
-  .result-tip {
-    font-style: italic;
-    font-size: 0.85rem;
-    color: var(--muted);
-  }
-
+  .result-tip { font-size: 0.85rem; color: var(--muted); }
   .new-btn {
-    padding: 9px 20px;
-    background: none;
-    border: 1px solid rgba(201,168,76,0.3);
-    border-radius: 2px;
-    color: var(--gold);
-    font-family: 'Cinzel', serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    cursor: pointer;
-    transition: all 0.3s;
+    padding: 9px 20px; background: none;
+    border: 1px solid rgba(201,168,76,0.3); border-radius: 2px;
+    color: var(--gold); font-family: 'Cinzel', serif;
+    font-size: 0.65rem; letter-spacing: 0.12em;
+    cursor: pointer; transition: all 0.3s;
     -webkit-tap-highlight-color: transparent;
   }
 
-  .oracle-card {
+  /* ── ORACLE CARD (küçük giriş kartı üstünde) ── */
+  .oracle-intro {
     background: linear-gradient(145deg, rgba(26,16,53,0.6), rgba(13,9,32,0.8));
     border: 1px solid rgba(160,80,96,0.25);
-    border-radius: 2px;
-    padding: 28px 20px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 20px;
+    border-radius: 2px; padding: 28px 20px;
+    text-align: center; position: relative; overflow: hidden; margin-bottom: 20px;
   }
-  .oracle-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
+  .oracle-intro::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
     background: linear-gradient(90deg, transparent, var(--rose-light), transparent);
   }
-
   .oracle-sign { font-size: 2.5rem; margin-bottom: 10px; display: block; }
-  .oracle-title {
-    font-family: 'Cinzel', serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    color: var(--rose-light);
-    text-transform: uppercase;
-    margin-bottom: 14px;
+  .oracle-intro-title {
+    font-family: 'Cinzel', serif; font-size: 0.65rem;
+    letter-spacing: 0.2em; color: var(--rose-light);
+    text-transform: uppercase; margin-bottom: 14px;
   }
-  .oracle-text {
-    font-style: italic;
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: var(--silver);
+  .oracle-intro-text { font-size: 1.1rem; line-height: 1.8; color: var(--silver); }
+
+  /* ── ORACLE PAYLAŞIM KARTI ── */
+  .oracle-share-card {
+    display: none; border-radius: 16px; overflow: hidden;
+    position: relative; margin-bottom: 16px;
+    background: #0a0615;
+    border: 1px solid rgba(201,168,76,0.25);
+    box-shadow: 0 0 60px rgba(80,40,120,0.3), 0 0 120px rgba(0,0,0,0.5);
+  }
+  .oracle-share-card.show { display: block; animation: revealCard 0.8s ease; }
+
+  /* Arka plan efektleri */
+  .osc-bg {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% -10%, rgba(201,168,76,0.15) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 40% at 10% 90%, rgba(160,80,96,0.15) 0%, transparent 55%),
+      radial-gradient(ellipse 40% 40% at 90% 80%, rgba(80,40,120,0.15) 0%, transparent 55%);
+  }
+  .osc-lines {
+    position: absolute; inset: 0; pointer-events: none; overflow: hidden; opacity: 0.03;
+    background-image: repeating-linear-gradient(0deg, rgba(255,255,255,0.5) 0px, rgba(255,255,255,0.5) 1px, transparent 1px, transparent 40px);
   }
 
+  .osc-inner { position: relative; z-index: 1; padding: 28px 24px 24px; }
+
+  /* Üst bant */
+  .osc-top {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 22px;
+  }
+  .osc-brand {
+    display: flex; align-items: center; gap: 8px;
+  }
+  .osc-brand-icon { font-size: 1.2rem; }
+  .osc-brand-text {
+    font-family: 'Cinzel', serif; font-size: 0.7rem;
+    letter-spacing: 0.2em; color: rgba(201,168,76,0.7);
+    text-transform: uppercase;
+  }
+  .osc-date {
+    font-size: 0.75rem; color: var(--muted);
+    font-family: 'Cinzel', serif; letter-spacing: 0.05em;
+  }
+
+  /* Başlık */
+  .osc-tag {
+    font-family: 'Cinzel', serif; font-size: 0.6rem;
+    letter-spacing: 0.25em; color: var(--rose-light);
+    text-transform: uppercase; margin-bottom: 8px;
+  }
+  .osc-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    font-weight: 300; color: #ffffff;
+    line-height: 1.25; margin-bottom: 24px; letter-spacing: 0.01em;
+  }
+
+  /* Divider */
+  .osc-divider {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 22px;
+  }
+  .osc-divider::before, .osc-divider::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent);
+  }
+  .osc-divider-icon { color: var(--gold); font-size: 0.8rem; }
+
+  /* Bölümler */
+  .osc-sections { display: flex; flex-direction: column; gap: 16px; margin-bottom: 22px; }
+  .osc-section { display: flex; gap: 14px; align-items: flex-start; }
+  .osc-section-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .osc-section-label {
+    font-family: 'Cinzel', serif; font-size: 0.58rem;
+    letter-spacing: 0.15em; color: var(--gold);
+    text-transform: uppercase; margin-bottom: 4px;
+  }
+  .osc-section-text {
+    font-size: 0.97rem; line-height: 1.75;
+    color: rgba(240, 236, 255, 0.92); font-weight: 400;
+  }
+
+  /* Şans şeridi */
+  .osc-lucky {
+    display: flex; justify-content: space-around;
+    padding: 14px; margin-bottom: 22px;
+    background: rgba(201,168,76,0.06);
+    border: 1px solid rgba(201,168,76,0.18);
+    border-radius: 8px; flex-wrap: wrap; gap: 8px;
+  }
+  .osc-lucky-item { text-align: center; }
+  .osc-lucky-label {
+    font-family: 'Cinzel', serif; font-size: 0.55rem;
+    letter-spacing: 0.1em; color: var(--muted);
+    text-transform: uppercase; display: block; margin-bottom: 4px;
+  }
+  .osc-lucky-val {
+    font-size: 1.05rem; font-weight: 600; color: var(--gold-light);
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* Kapanış */
+  .osc-closing {
+    padding: 16px; margin-bottom: 20px;
+    background: linear-gradient(135deg, rgba(80,40,120,0.2), rgba(160,80,96,0.1));
+    border-radius: 8px; border: 1px solid rgba(201,168,76,0.15);
+    font-size: 1rem; line-height: 1.75;
+    color: #e8e0ff; font-weight: 400;
+  }
+
+  /* Alt footer */
+  .osc-footer {
+    display: flex; justify-content: space-between;
+    align-items: center; padding-top: 16px;
+    border-top: 1px solid rgba(201,168,76,0.12);
+  }
+  .osc-footer-tip { font-size: 0.8rem; color: var(--muted); }
+  .osc-footer-logo {
+    font-family: 'Cinzel', serif; font-size: 0.65rem;
+    letter-spacing: 0.15em; color: rgba(201,168,76,0.45);
+  }
+
+  /* Aksiyon butonları */
+  .oracle-actions {
+    display: none; gap: 8px; margin-top: 12px;
+  }
+  .oracle-actions.show { display: flex; }
+  .oracle-action-btn {
+    flex: 1; padding: 12px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 2px; color: var(--gold);
+    font-family: 'Cinzel', serif; font-size: 0.65rem;
+    letter-spacing: 0.1em; cursor: pointer; transition: all 0.3s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .oracle-action-btn:hover { background: rgba(201,168,76,0.1); }
+
+  /* ── HATA ── */
   .error-msg {
     display: none;
     background: rgba(160,80,96,0.1);
     border: 1px solid rgba(160,80,96,0.3);
-    padding: 14px 20px;
-    border-radius: 2px;
-    color: var(--rose-light);
-    font-style: italic;
-    text-align: center;
-    margin-top: 14px;
-    font-size: 0.95rem;
+    padding: 14px 20px; border-radius: 2px;
+    color: var(--rose-light); text-align: center;
+    margin-top: 14px; font-size: 0.95rem;
   }
   .error-msg.show { display: block; }
 
+  /* ── SCROLLBAR ── */
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: var(--void); }
   ::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.2); border-radius: 3px; }
-
-  /* GÜNDÜZ MODU */
-  body.day-mode {
-    --void: #f5f0e8;
-    --deep: #ede5d0;
-    --mid: #e0d4b8;
-    --gold: #8a6500;
-    --gold-light: #6b4e00;
-    --rose: #7a2030;
-    --rose-light: #9b2d3a;
-    --silver: #3a3250;
-    --text: #1a1030;
-    --muted: #5a4e70;
-  }
-  body.day-mode { background: var(--void); }
-  body.day-mode .nebula {
-    background:
-      radial-gradient(ellipse 60% 40% at 20% 30%, rgba(200,170,100,0.2) 0%, transparent 70%),
-      radial-gradient(ellipse 50% 60% at 80% 70%, rgba(180,120,130,0.15) 0%, transparent 70%),
-      radial-gradient(ellipse 80% 50% at 50% 100%, rgba(240,230,210,0.6) 0%, transparent 70%);
-  }
-  body.day-mode .star { background: #8a6500; opacity: 0.3; }
-  body.day-mode .input-card {
-    background: linear-gradient(145deg, rgba(235,220,185,0.95), rgba(225,210,170,0.98));
-    border-color: rgba(138,101,0,0.35);
-  }
-  body.day-mode textarea {
-    background: rgba(255,250,240,0.8);
-    border-color: rgba(138,101,0,0.2);
-    color: var(--text);
-  }
-  body.day-mode .tabs {
-    background: rgba(0,0,0,0.04);
-    border-color: rgba(138,101,0,0.3);
-  }
-  body.day-mode .tab-btn.active { background: rgba(138,101,0,0.12); }
-  body.day-mode .result-card {
-    background: linear-gradient(145deg, rgba(235,220,185,0.97), rgba(225,210,170,0.99));
-    border-color: rgba(138,101,0,0.4);
-  }
-  body.day-mode .result-header {
-    background: linear-gradient(135deg, rgba(138,101,0,0.12), rgba(155,45,58,0.08));
-    border-bottom-color: rgba(138,101,0,0.25);
-  }
-  body.day-mode .oracle-card {
-    background: linear-gradient(145deg, rgba(235,220,185,0.8), rgba(225,210,170,0.9));
-    border-color: rgba(155,45,58,0.3);
-  }
-  body.day-mode .fortune-type-btn {
-    background: rgba(255,250,240,0.6);
-    border-color: rgba(138,101,0,0.2);
-    color: var(--muted);
-  }
-  body.day-mode .fortune-type-btn.selected {
-    background: rgba(138,101,0,0.1);
-    border-color: var(--gold);
-    color: var(--gold-light);
-  }
-  body.day-mode .cta-btn {
-    background: linear-gradient(135deg, rgba(138,101,0,0.15), rgba(155,45,58,0.12));
-    border-color: var(--gold);
-    color: var(--gold-light);
-  }
-  body.day-mode .logo-title {
-    background: linear-gradient(135deg, #8a6500 0%, #6b4e00 40%, #9b2d3a 70%, #8a6500 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-  }
-
-  /* TEMA TOGGLE */
-  .theme-toggle {
-    position: fixed;
-    top: 14px;
-    right: 16px;
-    z-index: 100;
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(201,168,76,0.3);
-    border-radius: 20px;
-    padding: 7px 14px;
-    cursor: pointer;
-    font-size: 0.75rem;
-    color: var(--gold);
-    font-family: 'Cinzel', serif;
-    letter-spacing: 0.05em;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    -webkit-tap-highlight-color: transparent;
-  }
-  body.day-mode .theme-toggle {
-    background: rgba(0,0,0,0.06);
-    border-color: rgba(138,101,0,0.35);
-    color: var(--gold);
-  }
 </style>
 </head>
 <body>
-
-<button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Gece</button>
 
 <div class="nebula"></div>
 <div class="stars" id="stars"></div>
@@ -822,7 +493,7 @@
 
 <main class="main">
 
-  <!-- RÜYA TABİRİ -->
+  <!-- ════ RÜYA TABİRİ ════ -->
   <div class="panel active" id="panel-ruya">
     <div class="input-card">
       <label class="input-label">✦ Rüyanı Anlat</label>
@@ -852,7 +523,7 @@
     </div>
   </div>
 
-  <!-- FAL -->
+  <!-- ════ FAL ════ -->
   <div class="panel" id="panel-fal">
     <div class="input-card">
       <label class="input-label">☽ Fal Türünü Seç</label>
@@ -863,26 +534,30 @@
         <button class="fortune-type-btn" data-type="el" onclick="selectFalType(this)">
           <span class="icon">🤲</span><span class="label">El Falı</span>
         </button>
-        <button class="fortune-type-btn" data-type="yıldız" onclick="selectFalType(this)">
+        <button class="fortune-type-btn" data-type="yildiz" onclick="selectFalType(this)">
           <span class="icon">⭐</span><span class="label">Yıldız Falı</span>
         </button>
         <button class="fortune-type-btn" data-type="genel" onclick="selectFalType(this)">
           <span class="icon">🌟</span><span class="label">Genel Fal</span>
         </button>
       </div>
+
       <label class="input-label" style="margin-top:16px;">☽ Aklındaki Konu</label>
       <textarea id="fal-input" rows="3" placeholder="Aşk mı, kariyer mi, para mı? Aklındaki soruyu yaz... Ya da boş bırakırsan kader yönlendirir."></textarea>
 
-      <label class="input-label" style="margin-top:16px;">📸 Fotoğraf Yükle (İsteğe Bağlı)</label>
-      <div class="photo-preview-wrap" id="fal-photo-preview">
-        <img id="fal-photo-img" src="" alt="Yüklenen fotoğraf">
-        <button class="photo-remove-btn" onclick="removePhoto()" title="Fotoğrafı kaldır">✕</button>
-      </div>
-      <div class="photo-upload-area" id="fal-upload-area">
-        <input type="file" accept="image/*" onchange="handlePhotoUpload(event)" id="fal-photo-input">
-        <span class="photo-upload-icon">📷</span>
-        <span class="photo-upload-label">Fotoğraf Yükle</span>
-        <span class="photo-upload-sub">Kahve telvesi, el ayası, yıldız haritası...</span>
+      <!-- Fotoğraf alanı — sadece kahve ve el falı için gösterilir -->
+      <div class="photo-upload-wrap" id="fal-photo-wrap">
+        <label class="input-label" style="margin-top:16px;" id="fal-photo-label">📸 Fotoğraf Yükle</label>
+        <div class="photo-preview-wrap" id="fal-photo-preview">
+          <img id="fal-photo-img" src="" alt="Yüklenen fotoğraf">
+          <button class="photo-remove-btn" onclick="removePhoto()">✕</button>
+        </div>
+        <div class="photo-upload-area" id="fal-upload-area">
+          <input type="file" accept="image/*" onchange="handlePhotoUpload(event)" id="fal-photo-input">
+          <span class="photo-upload-icon">📷</span>
+          <span class="photo-upload-label">Fotoğraf Yükle</span>
+          <span class="photo-upload-sub" id="fal-photo-sub">Kahve fincanını veya el ayasını çek, KUBER okusun</span>
+        </div>
       </div>
 
       <button class="cta-btn" onclick="tabir('fal')" id="fal-btn">☽ FALIMA BAK ☽</button>
@@ -910,12 +585,12 @@
     </div>
   </div>
 
-  <!-- GÜNÜN MESAJI -->
+  <!-- ════ GÜNÜN MESAJI ════ -->
   <div class="panel" id="panel-oracle">
-    <div class="oracle-card">
+    <div class="oracle-intro">
       <span class="oracle-sign">✨</span>
-      <div class="oracle-title">Günün Kozmik Mesajı</div>
-      <div class="oracle-text">Evren sana bugün ne söylemek istiyor?</div>
+      <div class="oracle-intro-title">Günün Kozmik Mesajı</div>
+      <div class="oracle-intro-text">Evren sana bugün ne söylemek istiyor?</div>
     </div>
     <div class="input-card">
       <label class="input-label">★ Bugün Nasıl Hissediyorsun?</label>
@@ -930,24 +605,30 @@
 
     <!-- PAYLAŞIM KARTI -->
     <div class="oracle-share-card" id="oracle-result">
-      <div class="oracle-share-bg"></div>
-      <div class="oracle-share-inner" id="oracle-share-inner">
-        <div class="oracle-share-top">
-          <div class="oracle-share-brand">✦ KUBER RÜYA</div>
-          <div class="oracle-share-date" id="oracle-date"></div>
+      <div class="osc-bg"></div>
+      <div class="osc-lines"></div>
+      <div class="osc-inner">
+        <div class="osc-top">
+          <div class="osc-brand">
+            <span class="osc-brand-icon">🌙</span>
+            <span class="osc-brand-text">KUBER RÜYA</span>
+          </div>
+          <div class="osc-date" id="osc-date"></div>
         </div>
-        <div class="oracle-share-title">★ Günün Kozmik Mesajı</div>
-        <div class="oracle-share-headline" id="oracle-headline">Evrenin sana bugün bir sırrı var...</div>
-        <div class="oracle-share-divider"><span>✦</span></div>
-        <div class="oracle-share-sections" id="oracle-sections"></div>
-        <div class="oracle-share-lucky" id="oracle-lucky"></div>
-        <div class="oracle-share-footer">
-          <div class="oracle-share-closing" id="oracle-closing"></div>
-          <div class="oracle-share-logo">KUBER<br>RÜYA</div>
+        <div class="osc-tag">★ Günün Kozmik Mesajı</div>
+        <div class="osc-headline" id="osc-headline">Evrenin sana bugün bir sırrı var...</div>
+        <div class="osc-divider"><span class="osc-divider-icon">✦</span></div>
+        <div class="osc-sections" id="osc-sections"></div>
+        <div class="osc-lucky" id="osc-lucky"></div>
+        <div class="osc-closing" id="osc-closing"></div>
+        <div class="osc-footer">
+          <div class="osc-footer-tip">✦ Her yeni gün yeni bir başlangıç</div>
+          <div class="osc-footer-logo">KUBER RÜYA</div>
         </div>
       </div>
     </div>
-    <div class="oracle-share-actions" id="oracle-actions" style="display:none;">
+
+    <div class="oracle-actions" id="oracle-actions">
       <button class="oracle-action-btn" onclick="resetPanel('oracle')">★ YENİDEN AL</button>
       <button class="oracle-action-btn" onclick="shareOracle()">↗ PAYLAŞ</button>
     </div>
@@ -956,24 +637,63 @@
 </main>
 
 <script>
-// Yıldız efekti
-const starsContainer = document.getElementById('stars');
+// ── Yıldızlar ──
+const starsEl = document.getElementById('stars');
 for (let i = 0; i < 100; i++) {
-  const star = document.createElement('div');
-  star.className = 'star';
-  const size = Math.random() * 2.5 + 0.5;
-  star.style.cssText = `width:${size}px;height:${size}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${Math.random()*3+2}s;--delay:${Math.random()*4}s;`;
-  starsContainer.appendChild(star);
+  const s = document.createElement('div');
+  s.className = 'star';
+  const sz = Math.random() * 2.5 + 0.5;
+  s.style.cssText = `width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${Math.random()*3+2}s;--delay:${Math.random()*4}s;`;
+  starsEl.appendChild(s);
 }
 
+// ── Fal state ──
 let selectedFalType = 'kahve';
 let uploadedPhotoBase64 = null;
-const falTypeIcons = { kahve:'☕', el:'🤲', yıldız:'⭐', genel:'🌟' };
-const falTypeNames = { kahve:'Kahve Falı', el:'El Falı', yıldız:'Yıldız Falı', genel:'Genel Fal' };
+let uploadedPhotoMime = 'image/jpeg';
 
+const falTypeIcons = { kahve:'☕', el:'🤲', yildiz:'⭐', genel:'🌟' };
+const falTypeNames = { kahve:'Kahve Falı', el:'El Falı', yildiz:'Yıldız Falı', genel:'Genel Fal' };
+const falPhotoTypes = ['kahve', 'el']; // sadece bunlarda fotoğraf var
+
+const falPhotoSubs = {
+  kahve: 'Kahve fincanının fotoğrafını yükle — KUBER telveden okusun',
+  el: 'El ayasının fotoğrafını yükle — KUBER çizgilerden okusun'
+};
+
+// ── Tab ──
+function switchTab(tab, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-' + tab).classList.add('active');
+}
+
+// ── Fal tipi seçimi ──
+function selectFalType(btn) {
+  document.querySelectorAll('.fortune-type-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedFalType = btn.dataset.type;
+
+  document.getElementById('fal-result-icon').textContent = falTypeIcons[selectedFalType];
+  document.getElementById('fal-result-category').textContent = falTypeNames[selectedFalType];
+
+  // Fotoğraf alanını göster/gizle
+  const photoWrap = document.getElementById('fal-photo-wrap');
+  if (falPhotoTypes.includes(selectedFalType)) {
+    photoWrap.style.display = 'block';
+    document.getElementById('fal-photo-sub').textContent = falPhotoSubs[selectedFalType];
+  } else {
+    photoWrap.style.display = 'none';
+    removePhoto();
+  }
+}
+
+// ── Fotoğraf ──
 function handlePhotoUpload(event) {
   const file = event.target.files[0];
   if (!file) return;
+  uploadedPhotoMime = file.type || 'image/jpeg';
   const reader = new FileReader();
   reader.onload = (e) => {
     uploadedPhotoBase64 = e.target.result.split(',')[1];
@@ -986,56 +706,57 @@ function handlePhotoUpload(event) {
 
 function removePhoto() {
   uploadedPhotoBase64 = null;
-  document.getElementById('fal-photo-input').value = '';
+  const input = document.getElementById('fal-photo-input');
+  if (input) input.value = '';
   document.getElementById('fal-photo-preview').classList.remove('show');
   document.getElementById('fal-upload-area').style.display = 'block';
 }
 
-function shareOracle() {
-  if (navigator.share) {
-    navigator.share({ title: 'KUBER RÜYA — Günün Mesajı', text: 'KUBER bana bugünün mesajını söyledi! kuberruya.com' });
-  } else {
-    navigator.clipboard?.writeText('KUBER RÜYA — Günün Mesajı: kuberruya.com').then(() => alert('Link kopyalandı!'));
-  }
-}
-
-function toggleTheme() {
-  const body = document.body;
-  const btn = document.getElementById('themeBtn');
-  if (body.classList.contains('day-mode')) {
-    body.classList.remove('day-mode');
-    btn.textContent = '🌙 Gece';
-  } else {
-    body.classList.add('day-mode');
-    btn.textContent = '☀️ Gündüz';
-  }
-}
-
-function switchTab(tab, btn) {
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('panel-' + tab).classList.add('active');
-}
-
-function selectFalType(btn) {
-  document.querySelectorAll('.fortune-type-btn').forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
-  selectedFalType = btn.dataset.type;
-  document.getElementById('fal-result-icon').textContent = falTypeIcons[selectedFalType];
-  document.getElementById('fal-result-category').textContent = falTypeNames[selectedFalType];
-}
-
+// ── Reset ──
 function resetPanel(type) {
   document.getElementById(type + '-result').classList.remove('show');
-  if (type === 'oracle') {
-    document.getElementById('oracle-actions').style.display = 'none';
-  }
   if (type === 'fal') removePhoto();
-  if (document.getElementById(type + '-input')) document.getElementById(type + '-input').value = '';
+  if (type === 'oracle') document.getElementById('oracle-actions').classList.remove('show');
+  const inp = document.getElementById(type + '-input');
+  if (inp) inp.value = '';
   document.getElementById(type + '-error').classList.remove('show');
 }
 
+// ── Paylaş ──
+function shareOracle() {
+  if (navigator.share) {
+    navigator.share({ title: 'KUBER RÜYA — Günün Kozmik Mesajı', text: 'KUBER bana bugünün mesajını verdi! ✨', url: window.location.href });
+  } else {
+    navigator.clipboard?.writeText(window.location.href).then(() => alert('Link kopyalandı!'));
+  }
+}
+
+// ── HTML format şablonu ──
+function htmlFormat(b1, b2, b3, b4) {
+  return `Yanıtını YALNIZCA aşağıdaki HTML yapısında ver. Parantez içindekiler yönergedir, sil ve gerçek içerik yaz. Başka hiçbir şey ekleme, markdown da kullanma:
+
+<div class="k-section">
+<div class="k-section-title"><span class="k-emoji">${b1.emoji}</span> ${b1.baslik}</div>
+<p>[${b1.icerik}]</p>
+</div>
+<div class="k-section">
+<div class="k-section-title"><span class="k-emoji">${b2.emoji}</span> ${b2.baslik}</div>
+<p>[${b2.icerik}]</p>
+</div>
+<div class="k-section">
+<div class="k-section-title"><span class="k-emoji">${b3.emoji}</span> ${b3.baslik}</div>
+<p>[${b3.icerik}]</p>
+</div>
+<div class="k-section">
+<div class="k-section-title"><span class="k-emoji">${b4.emoji}</span> ${b4.baslik}</div>
+<p>[${b4.icerik}]</p>
+</div>
+<div class="k-closing">[Ben KUBER olarak... diye başlayan güçlü kapanış. 1-2 cümle.]</div>
+
+Tüm içerik Türkçe. Cümleler net, akıcı ve güçlü olsun.`;
+}
+
+// ── Ana tabir fonksiyonu ──
 async function tabir(type) {
   const input = document.getElementById(type + '-input') ? document.getElementById(type + '-input').value.trim() : '';
   const btn = document.getElementById(type + '-btn');
@@ -1046,102 +767,66 @@ async function tabir(type) {
   result.classList.remove('show');
   error.classList.remove('show');
 
-  const htmlFormat = `
-Yanıtını YALNIZCA aşağıdaki HTML yapısında ver. Parantez içindeki yönergeleri sil, gerçek içerik yaz. Başka hiçbir şey ekleme:
-
-[BÖLÜM_1]
-[BÖLÜM_2]
-[BÖLÜM_3]
-[BÖLÜM_4]
-<div class="k-closing">[Güçlü, ilham verici kapanış — "Ben KUBER olarak..." ile başla. 1-2 cümle.]</div>
-
-Her bölüm bu formatta:
-<div class="k-section">
-<div class="k-section-title"><span class="k-emoji">[EMOJİ]</span> [BAŞLIK]</div>
-<p>[İçerik — 2-3 cümle, mistik ve akıcı]</p>
-</div>`;
-
   let prompt = '';
   let requestBody = {};
 
   if (type === 'ruya') {
-    if (!input) { showError(type, 'Lütfen rüyanı anlat, ardından tabir edeyim...'); return; }
-    prompt = `Sen KUBER'sin — kadim ve gizemli bir rüya yorumcusu. Türk kültürü ile evrensel sembolizmi harmanlar, derin ve ilham verici tabirler yaparsın.
+    if (!input) { showError(type, '✦ Lütfen önce rüyanı anlat...'); return; }
+    prompt = `Sen KUBER'sin — kadim ve gizemli bir rüya yorumcusu. Türk kültürü ile evrensel sembolizmi harmanlar, derin tabirler yaparsın.
 
 Kullanıcının rüyası: "${input}"
 
-${htmlFormat.replace('[BÖLÜM_1]', `<div class="k-section">
-<div class="k-section-title"><span class="k-emoji">🔮</span> Sembollerin Dili</div>
-<p>[Rüyadaki ana nesneler ve karakterlerin mistik anlamını açıkla]</p>
-</div>`).replace('[BÖLÜM_2]', `<div class="k-section">
-<div class="k-section-title"><span class="k-emoji">🌊</span> Bilinçaltının Sesi</div>
-<p>[Rüyanın bilinçaltındaki derin duygusal mesajı]</p>
-</div>`).replace('[BÖLÜM_3]', `<div class="k-section">
-<div class="k-section-title"><span class="k-emoji">🌙</span> Yakın Gelecek</div>
-<p>[Rüyanın yakın gelecek için verdiği işaretler ve ipuçları]</p>
-</div>`).replace('[BÖLÜM_4]', `<div class="k-section">
-<div class="k-section-title"><span class="k-emoji">✨</span> Ruhsal Mesaj</div>
-<p>[Evrensel ve ruhsal anlam katmanı]</p>
-</div>`)}
-
-Tüm içerik Türkçe.`;
+` + htmlFormat(
+      { emoji: '🔮', baslik: 'Sembollerin Dili', icerik: 'Rüyadaki ana nesneler, renkler ve karakterlerin mistik anlamını açıkla. 2-3 cümle.' },
+      { emoji: '🌊', baslik: 'Bilinçaltının Sesi', icerik: 'Bu rüyanın bilinçaltındaki derin duygusal mesajını yorumla. 2-3 cümle.' },
+      { emoji: '🌙', baslik: 'Yakın Gelecek', icerik: 'Rüyanın yakın gelecek için verdiği işaretleri ve ipuçlarını anlat. 2-3 cümle.' },
+      { emoji: '✨', baslik: 'Ruhsal Mesaj', icerik: 'Rüyanın evrensel ve ruhsal anlam katmanını ortaya çıkar. 2-3 cümle.' }
+    );
     requestBody = { prompt };
 
   } else if (type === 'fal') {
     const topic = input || 'genel hayat, aşk ve kariyer';
-    const falEmojis = { kahve:'☕', el:'🤲', yıldız:'⭐', genel:'🌟' };
-    const photoNote = uploadedPhotoBase64
-      ? `\nKullanıcı bir fotoğraf yükledi. Fotoğrafı dikkatlice analiz et ve falı buna göre yorumla — görseldeki şekilleri, sembolleri ve desenleri bul.`
+    const hasPhoto = !!uploadedPhotoBase64;
+    const photoNote = hasPhoto
+      ? `\nKullanıcı ${falTypeNames[selectedFalType]} için bir fotoğraf yükledi. Görseli dikkatle analiz et — şekilleri, desenleri, sembolleri bul ve yorumuna dahil et.`
       : '';
 
     prompt = `Sen KUBER'sin — ${falTypeNames[selectedFalType]} konusunda derin bilgiye sahip gizemli bir fal ustası.${photoNote}
 
-Kullanıcının konusu: "${topic}"
-Fal türü: ${falTypeNames[selectedFalType]}
+Konu: "${topic}" | Fal: ${falTypeNames[selectedFalType]}
 
-${htmlFormat.replace('[BÖLÜM_1]', `<div class="k-section">
-<div class="k-section-title"><span class="k-emoji">🕰️</span> Geçmişten Gelen</div>
-<p>[Geçmişten gelen etkiler ve bu falda ne göründüğü]</p>
-</div>`).replace('[BÖLÜM_2]', `<div class="k-section">
-<div class="k-section-title"><span class="k-emoji">${falEmojis[selectedFalType] || '🔮'}</span> Şimdiki Enerji</div>
-<p>[Şu anki enerji ve ${falTypeNames[selectedFalType]}'na özgü semboller${uploadedPhotoBase64 ? ' — görselden okuduklarını da ekle' : ''}]</p>
-</div>`).replace('[BÖLÜM_3]', `<div class="k-section">
-<div class="k-section-title"><span class="k-emoji">💫</span> Aşk & İlişkiler</div>
-<p>[Aşk ve ilişkiler hakkında fal yorumu]</p>
-</div>`).replace('[BÖLÜM_4]', `<div class="k-section">
-<div class="k-section-title"><span class="k-emoji">🌟</span> Kariyer & Bereket</div>
-<p>[Kariyer ve maddi konular hakkında mesaj]</p>
-</div>`)}
-
-Tüm içerik Türkçe.`;
-
+` + htmlFormat(
+      { emoji: '🕰️', baslik: 'Geçmişten Gelen', icerik: 'Geçmişten gelen etkiler ve bu falda ne göründüğü. 2-3 cümle.' },
+      { emoji: falTypeIcons[selectedFalType], baslik: 'Şimdiki Enerji', icerik: `${falTypeNames[selectedFalType]}'na özgü semboller ve şu anki enerji${hasPhoto ? ' — görselden okuduklarını dahil et' : ''}. 2-3 cümle.` },
+      { emoji: '💫', baslik: 'Aşk & İlişkiler', icerik: 'Aşk ve ilişkiler hakkında fal mesajı. 2-3 cümle.' },
+      { emoji: '🌟', baslik: 'Kariyer & Bereket', icerik: 'Kariyer ve maddi konulardaki mesaj. 2-3 cümle.' }
+    );
     requestBody = { prompt };
-    if (uploadedPhotoBase64) {
-      const imgEl = document.getElementById('fal-photo-img');
-      const src = imgEl.src;
-      const mimeMatch = src.match(/data:([^;]+);/);
+    if (hasPhoto) {
       requestBody.image = uploadedPhotoBase64;
-      requestBody.imageType = mimeMatch ? mimeMatch[1] : 'image/jpeg';
+      requestBody.imageType = uploadedPhotoMime;
     }
 
   } else {
-    // ORACLE — JSON formatında dönsün, şık karta render edeceğiz
+    // ORACLE — JSON
     const mood = input || 'merak dolu ve hayata açık';
     prompt = `Sen KUBER'sin — kozmik enerjileri okuyan gizemli bir rehber.
 
-Kullanıcının bugünkü hali: "${mood}"
+Kullanıcının hali: "${mood}"
 
-Yanıtını YALNIZCA aşağıdaki JSON formatında ver. Başka hiçbir şey yazma, sadece JSON:
+SADECE aşağıdaki JSON formatında yanıt ver. Başka hiçbir şey yazma:
 {
-  "baslik": "[Bugünün enerjisini özetleyen kısa, şiirsel bir başlık — 5-8 kelime, Türkçe]",
-  "enerji": "[Günün kozmik enerjisi, hangi gezegen/burç etkili — 2 cümle, Türkçe]",
-  "eylem": "[Bugün yapılması gereken eylem + kaçınılması gereken şey — 2 cümle, Türkçe]",
-  "mesaj": "[Güçlü motivasyon ve ilham mesajı — 2 cümle, KUBER olarak konuş, Türkçe]",
-  "sans_renk": "[Şanslı renk adı]",
+  "baslik": "[Bugünün enerjisini özetleyen şiirsel başlık — 5-8 kelime]",
+  "enerji": "[Günün kozmik enerjisi ve hangi gezegen/burç etkili — 2 cümle, net ve güçlü]",
+  "eylem": "[Bugün yapılması gereken eylem ve kaçınılması gereken şey — 2 cümle]",
+  "mesaj": "[KUBER olarak güçlü motivasyon mesajı — 2 cümle, ilham verici]",
+  "sans_renk": "[Şanslı renk]",
   "sans_sayi": "[Şanslı sayı]",
-  "sans_sembol": "[Şanslı sembol veya nesme adı]",
-  "kapanis": "[Ben KUBER olarak... diye başlayan ilham verici kapanış — 1-2 cümle, Türkçe]"
-}`;
+  "sans_sembol": "[Şanslı sembol veya nesne]",
+  "kapanis": "[Ben KUBER olarak... diye başlayan kapanış — 1-2 güçlü cümle]"
+}
+
+Tüm içerik Türkçe.`;
     requestBody = { prompt };
   }
 
@@ -1149,97 +834,101 @@ Yanıtını YALNIZCA aşağıdaki JSON formatında ver. Başka hiçbir şey yazm
   loading.classList.add('show');
 
   try {
-    const response = await fetch('/api/ask', {
+    const res = await fetch('/api/ask', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(requestBody)
     });
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.error || 'Bir hata oluştu');
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Bir hata oluştu');
 
     const text = data.result || '';
     loading.classList.remove('show');
 
     if (type === 'oracle') {
-      // JSON parse edip şık karta render et
-      try {
-        const clean = text.replace(/```json|```/g, '').trim();
-        const d = JSON.parse(clean);
-
-        // Tarihi yaz
-        const now = new Date();
-        document.getElementById('oracle-date').textContent =
-          now.toLocaleDateString('tr-TR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
-
-        // Başlık
-        document.getElementById('oracle-headline').textContent = d.baslik || '';
-
-        // Bölümler
-        document.getElementById('oracle-sections').innerHTML = `
-          <div class="oracle-share-section">
-            <div class="oracle-share-section-icon">🌅</div>
-            <div class="oracle-share-section-content">
-              <div class="oracle-share-section-label">Günün Enerjisi</div>
-              <div class="oracle-share-section-text">${d.enerji || ''}</div>
-            </div>
-          </div>
-          <div class="oracle-share-section">
-            <div class="oracle-share-section-icon">⚡</div>
-            <div class="oracle-share-section-content">
-              <div class="oracle-share-section-label">Bugün & Kaçın</div>
-              <div class="oracle-share-section-text">${d.eylem || ''}</div>
-            </div>
-          </div>
-          <div class="oracle-share-section">
-            <div class="oracle-share-section-icon">🔥</div>
-            <div class="oracle-share-section-content">
-              <div class="oracle-share-section-label">Güç Mesajı</div>
-              <div class="oracle-share-section-text">${d.mesaj || ''}</div>
-            </div>
-          </div>
-        `;
-
-        // Şans sembolleri
-        document.getElementById('oracle-lucky').innerHTML = `
-          <div class="oracle-lucky-item">
-            <span class="oracle-lucky-label">🎨 Renk</span>
-            <span class="oracle-lucky-value">${d.sans_renk || ''}</span>
-          </div>
-          <div class="oracle-lucky-item">
-            <span class="oracle-lucky-label">🔢 Sayı</span>
-            <span class="oracle-lucky-value">${d.sans_sayi || ''}</span>
-          </div>
-          <div class="oracle-lucky-item">
-            <span class="oracle-lucky-label">✨ Sembol</span>
-            <span class="oracle-lucky-value">${d.sans_sembol || ''}</span>
-          </div>
-        `;
-
-        // Kapanış
-        document.getElementById('oracle-closing').textContent = d.kapanis || '';
-
-      } catch(e) {
-        // JSON parse başarısız olursa plain text göster
-        document.getElementById('oracle-headline').textContent = 'Evrenin sana bugün bir mesajı var...';
-        document.getElementById('oracle-sections').innerHTML = `<div class="oracle-share-section-text" style="font-style:italic;color:var(--text)">${text}</div>`;
-        document.getElementById('oracle-lucky').innerHTML = '';
-        document.getElementById('oracle-closing').textContent = '';
-      }
-
-      result.classList.add('show');
-      document.getElementById('oracle-actions').style.display = 'flex';
+      renderOracleCard(text);
     } else {
       document.getElementById(type + '-result-text').innerHTML = text;
       result.classList.add('show');
     }
-
     result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
   } catch (err) {
     loading.classList.remove('show');
-    showError(type, 'Mistik bağlantı kesildi. Lütfen tekrar dene... (' + err.message + ')');
+    showError(type, '✦ Mistik bağlantı kesildi. Lütfen tekrar dene... (' + err.message + ')');
   } finally {
     btn.disabled = false;
   }
+}
+
+// ── Oracle kartını render et ──
+function renderOracleCard(text) {
+  try {
+    const clean = text.replace(/```json|```/g, '').trim();
+    const d = JSON.parse(clean);
+
+    // Tarih
+    const now = new Date();
+    document.getElementById('osc-date').textContent =
+      now.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
+
+    // Başlık
+    document.getElementById('osc-headline').textContent = d.baslik || 'Evren bugün sana sesleniyor...';
+
+    // Bölümler
+    document.getElementById('osc-sections').innerHTML = `
+      <div class="osc-section">
+        <div class="osc-section-icon">🌅</div>
+        <div>
+          <div class="osc-section-label">Günün Enerjisi</div>
+          <div class="osc-section-text">${d.enerji || ''}</div>
+        </div>
+      </div>
+      <div class="osc-section">
+        <div class="osc-section-icon">⚡</div>
+        <div>
+          <div class="osc-section-label">Bugün & Kaçın</div>
+          <div class="osc-section-text">${d.eylem || ''}</div>
+        </div>
+      </div>
+      <div class="osc-section">
+        <div class="osc-section-icon">🔥</div>
+        <div>
+          <div class="osc-section-label">KUBER'in Mesajı</div>
+          <div class="osc-section-text">${d.mesaj || ''}</div>
+        </div>
+      </div>
+    `;
+
+    // Şans
+    document.getElementById('osc-lucky').innerHTML = `
+      <div class="osc-lucky-item">
+        <span class="osc-lucky-label">🎨 Renk</span>
+        <span class="osc-lucky-val">${d.sans_renk || ''}</span>
+      </div>
+      <div class="osc-lucky-item">
+        <span class="osc-lucky-label">🔢 Sayı</span>
+        <span class="osc-lucky-val">${d.sans_sayi || ''}</span>
+      </div>
+      <div class="osc-lucky-item">
+        <span class="osc-lucky-label">✨ Sembol</span>
+        <span class="osc-lucky-val">${d.sans_sembol || ''}</span>
+      </div>
+    `;
+
+    // Kapanış
+    document.getElementById('osc-closing').textContent = d.kapanis || '';
+
+  } catch(e) {
+    // Fallback
+    document.getElementById('osc-headline').textContent = 'Evren bugün sana sesleniyor...';
+    document.getElementById('osc-sections').innerHTML = `<div class="osc-section"><div class="osc-section-text">${text}</div></div>`;
+    document.getElementById('osc-lucky').innerHTML = '';
+    document.getElementById('osc-closing').textContent = '';
+  }
+
+  document.getElementById('oracle-result').classList.add('show');
+  document.getElementById('oracle-actions').classList.add('show');
 }
 
 function showError(type, msg) {

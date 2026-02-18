@@ -851,12 +851,26 @@ Rüya: "${input}"
     const hasPhoto = !!uploadedPhotoBase64;
 
     // Fotoğraf validasyonu için özel talimat
+    const kahveKontrol = `
+GÖREV 1 — FOTOĞRAF KONTROLÜ:
+Bu fotoğrafa bak. İçinde kahve, kahve fincanı, kahve telvesi, Türk kahvesi, espresso veya herhangi bir kahve içeceği var mı?
+- Eğer VARSA: Fal yorumunu yap, fincan ve telvadeki şekilleri, desenleri, sembolleri analiz ederek yorumuna dahil et.
+- Eğer YOKSA (yani fotoğraf tamamen farklı bir şeyse — insan, hayvan, manzara, yemek, ekran görüntüsü vs.): Sadece şunu yaz: "☕ Bu fotoğraf kahve falı için uygun değil. Lütfen kahve fincanınızın veya telvenizin fotoğrafını yükleyin." — Başka hiçbir şey yazma, fal yorumu yapma.`;
+
+    const elKontrol = `
+GÖREV 1 — FOTOĞRAF KONTROLÜ:
+Bu fotoğrafa bak. İçinde insan eli veya avuç içi (palm) görünüyor mu? El çizgileri, parmaklar veya el ayası fotoğrafı mı bu?
+- Eğer EVET, bir insan eli görünüyorsa: Fal yorumunu yap, eldeki çizgileri, şekilleri ve sembolleri analiz ederek yorumuna dahil et.
+- Eğer HAYIR, elde insan eli yoksa (masa, nesne, manzara, ekran görüntüsü, hayvan vs.): Sadece şunu yaz: "🤲 Bu fotoğraf el falı için uygun değil. Lütfen açık el ayasının fotoğrafını yükleyin." — Başka hiçbir şey yazma, fal yorumu yapma.`;
+
     const photoInstruction = hasPhoto
-      ? `\nKullanıcı ${falTypeNames[selectedFalType]} için bir fotoğraf yükledi. ÖNCE fotoğrafı analiz et: Eğer fotoğraf gerçekten bir ${selectedFalType === 'kahve' ? 'kahve fincanı veya telvesi' : 'el ayası veya avuç içi'} değilse, "Bu fotoğraf ${selectedFalType === 'kahve' ? 'kahve falı' : 'el falı'} için uygun değil. Lütfen ${selectedFalType === 'kahve' ? 'kahve fincanınızın' : 'el ayasının'} fotoğrafını yükleyin." yaz ve başka hiçbir şey yazma. Fotoğraf uygunsa fal yorumunu yap ve görseldeki sembolleri yorumuna dahil et.`
+      ? (selectedFalType === 'kahve' ? kahveKontrol : elKontrol)
       : '';
 
-    prompt = `Sen KUBER'sin — ${falTypeNames[selectedFalType]} ustası. ${userContext()}${photoInstruction}
+    prompt = `Sen KUBER'sin — ${falTypeNames[selectedFalType]} ustası. ${userContext()}
+${photoInstruction}
 
+${hasPhoto ? 'Eğer fotoğraf uygunsa, aşağıdaki formatta fal yorumu yap. Uygun değilse yukarıdaki uyarıyı ver ve dur.' : ''}
 Konu: "${topic}" | Fal: ${falTypeNames[selectedFalType]}
 
 ` + buildHtmlFormat(

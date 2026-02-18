@@ -852,16 +852,18 @@ Rüya: "${input}"
 
     // Fotoğraf validasyonu için özel talimat
     const kahveKontrol = `
-GÖREV 1 — FOTOĞRAF KONTROLÜ:
-Bu fotoğrafa bak. İçinde kahve, kahve fincanı, kahve telvesi, Türk kahvesi, espresso veya herhangi bir kahve içeceği var mı?
-- Eğer VARSA: Fal yorumunu yap, fincan ve telvadeki şekilleri, desenleri, sembolleri analiz ederek yorumuna dahil et.
-- Eğer YOKSA (yani fotoğraf tamamen farklı bir şeyse — insan, hayvan, manzara, yemek, ekran görüntüsü vs.): Sadece şunu yaz: "☕ Bu fotoğraf kahve falı için uygun değil. Lütfen kahve fincanınızın veya telvenizin fotoğrafını yükleyin." — Başka hiçbir şey yazma, fal yorumu yapma.`;
+ÖNEMLİ: Bu fotoğrafta herhangi bir kahve fincanı, kahve telvesi veya kahve içeceği görünüyor mu? (herhangi bir açıdan, herhangi bir pozisyonda olabilir)
+EVET, kahve/fincan var → Hemen fal yorumunu yap. Fincan ve telvedeki şekilleri, sembolleri yorumuna dahil et. Asla reddetme.
+HAYIR, hiç kahve/fincan yok → Sadece şunu yaz: "☕ Bu fotoğrafta kahve fincanı göremedim. Lütfen kahve fincanınızın fotoğrafını yükleyin." ve dur.
+
+NOT: Eğer fotoğrafta en ufak bir fincan veya kahve izi bile varsa, kabul et ve yorumla.`;
 
     const elKontrol = `
-GÖREV 1 — FOTOĞRAF KONTROLÜ:
-Bu fotoğrafa bak. İçinde insan eli veya avuç içi (palm) görünüyor mu? El çizgileri, parmaklar veya el ayası fotoğrafı mı bu?
-- Eğer EVET, bir insan eli görünüyorsa: Fal yorumunu yap, eldeki çizgileri, şekilleri ve sembolleri analiz ederek yorumuna dahil et.
-- Eğer HAYIR, elde insan eli yoksa (masa, nesne, manzara, ekran görüntüsü, hayvan vs.): Sadece şunu yaz: "🤲 Bu fotoğraf el falı için uygun değil. Lütfen açık el ayasının fotoğrafını yükleyin." — Başka hiçbir şey yazma, fal yorumu yapma.`;
+ÖNEMLİ: Bu fotoğrafta herhangi bir insan eli görünüyor mu? (avuç içi, el sırtı, parmaklar — herhangi bir açıdan, herhangi bir pozisyonda olabilir)
+EVET, el var → Hemen fal yorumunu yap. Eldeki çizgileri, şekilleri yorumuna dahil et. Asla reddetme.
+HAYIR, hiç el yok → Sadece şunu yaz: "🤲 Bu fotoğrafta el göremedim. Lütfen el ayasının veya elinizin fotoğrafını yükleyin." ve dur.
+
+NOT: Eğer fotoğrafta en ufak bir el veya parmak bile varsa, kabul et ve yorumla.`;`;
 
     const photoInstruction = hasPhoto
       ? (selectedFalType === 'kahve' ? kahveKontrol : elKontrol)

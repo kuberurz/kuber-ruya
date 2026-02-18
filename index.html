@@ -609,23 +609,15 @@ async function tabir(type) {
   loading.classList.add('show');
 
   try {
-    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+    const response = await fetch('/api/ask', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer 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',
-        'HTTP-Referer': 'https://kuber-ruya.vercel.app',
-        'X-Title': 'KUBER RUYA'
-      },
-      body: JSON.stringify({
-        model: 'openrouter/auto',
-        messages: [{ role: 'user', content: prompt }]
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt })
     });
     const data = await response.json();
-    if (!response.ok) throw new Error(data.error?.message || 'Bir hata oluştu');
+    if (!response.ok) throw new Error(data.error || 'Bir hata oluştu');
 
-    const text = data.choices?.[0]?.message?.content || '';
+    const text = data.result || '';
     loading.classList.remove('show');
     document.getElementById(type + '-result-text').textContent = text;
     result.classList.add('show');
